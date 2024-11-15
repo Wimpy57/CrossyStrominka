@@ -1,0 +1,22 @@
+{
+    "name": "InputController",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "c3eab090-ca71-4639-9923-c0602e7b7e42",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "ec602a3c-c486-4b22-911a-ffe95ef73409",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}

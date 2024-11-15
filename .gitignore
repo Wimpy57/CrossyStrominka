@@ -1,0 +1,31 @@
+# Ignore the Library folder
+[Ll]ibrary/
+# Ignore the Temp folder
+[Tt]emp/
+# Ignore Build folders
+[Bb]uild/
+# Ignore the Obj folder
+[Oo]bj/
+# Ignore Logs
+[Ll]ogs/
+# Ignore the UserSettings folder
+[Uu]ser[Ss]ettings/
+
+# Visual Studio / Rider generated files
+[Aa]ssets/**/*.csproj
+[Aa]ssets/**/*.unityproj
+[Aa]ssets/**/*.sln
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Unity 2020+ generated files
+.idea/
+.vscode/

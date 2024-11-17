@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3377398051843015038}
   - component: {fileID: 9035862940056371498}
   - component: {fileID: 1497172894855122375}
-  - component: {fileID: 3647566275594324022}
+  - component: {fileID: 2004091066675525396}
   m_Layer: 0
-  m_Name: SidewalkLine
+  m_Name: RailwayField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c5f75fefacfaaa1795f294fba67c7d9, type: 2}
+  - {fileID: 2100000, guid: 2a58ad9e4b26bcc19b3d8573d7e377ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3647566275594324022
+--- !u!114 &2004091066675525396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -42,8 +42,8 @@ public class MapGenerationManager : MonoBehaviour {
         }
         
         GenerateFields(_fieldIndexesToSpawn[0]);
-        RemoveLastField();
         _fieldIndexesToSpawn.RemoveAt(0);
+        RemoveLastField();
     }
     
     private void Player_OnMoveBackward(object sender, EventArgs e) {
@@ -123,6 +123,22 @@ public class MapGenerationManager : MonoBehaviour {
         int minFieldsInFront = 3;
         GenerateFields(startFieldIndex, MaxSpawnedFieldsInDirection, generateInFront:false);
         lastField = _spawnedFields[MaxSpawnedFieldsInDirection];
-        GenerateFields(startFieldIndex, Random.Range(minFieldsInFront, maxFieldsInFront), generateInFront:true);
+        int startFieldsInFrontAmount = Random.Range(minFieldsInFront, maxFieldsInFront);
+        GenerateFields(startFieldIndex, startFieldsInFrontAmount, generateInFront:true);
+        
+        for (int i = 0; i < MaxSpawnedFieldsInDirection - startFieldsInFrontAmount; i++) {
+            if (_fieldIndexesToSpawn.Count == 0) {
+                int fieldToSpawnIndex = GetRandomFieldToSpawnIndex();
+                int spawnedFieldsAmount = Random.Range(1, MaxSameFieldsSpawnedInRow + 1);
+
+                for (int j = 0; j < spawnedFieldsAmount; j++) {
+                    _fieldIndexesToSpawn.Add(fieldToSpawnIndex);
+                }
+            }
+            
+            GenerateFields(_fieldIndexesToSpawn[0]);
+            _fieldIndexesToSpawn.RemoveAt(0);
+        }
+        
     }
 }

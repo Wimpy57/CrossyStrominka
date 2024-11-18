@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tram
   m_EditorClassIdentifier: 
   prefab: {fileID: 1454963832465875986, guid: 6d575de99f528777ebabd1c9dc0b9e95, type: 3}
-  maxSpeed: 3
-  minSpeed: 1
+  maxSpeed: 7
+  minSpeed: 3
   vehicleName: Tram

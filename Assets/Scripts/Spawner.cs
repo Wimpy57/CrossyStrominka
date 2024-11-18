@@ -4,8 +4,10 @@ using UnityEngine.Serialization;
 public class Spawner : MonoBehaviour {
 
     [SerializeField] private VehicleSO vehicleSo;
-
+    [SerializeField] private Transform field;
+    
     public void SpawnVehicle() {
-        Instantiate(vehicleSo.prefab, transform.position, Quaternion.identity);
+        Transform vehicle = Instantiate(vehicleSo.prefab, transform.position, Quaternion.identity, field);
+        
     }
 }

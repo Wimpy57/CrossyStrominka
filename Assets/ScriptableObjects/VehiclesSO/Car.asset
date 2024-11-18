@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Car
   m_EditorClassIdentifier: 
   prefab: {fileID: 7623048032864909173, guid: 76bbb7b30f5de780584f93edd958ef74, type: 3}
-  maxSpeed: 5
-  minSpeed: 1
+  maxSpeed: 10
+  minSpeed: 3
   vehicleName: Car

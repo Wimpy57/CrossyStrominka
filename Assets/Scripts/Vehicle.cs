@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,7 +23,7 @@ public class Vehicle : MonoBehaviour {
     public void Update() {
         // todo: better checking position of a vehicle
         if (transform.position.x != transform.position.x * (-1)) {
-            transform.position += Vector3.right * (_speed * Time.deltaTime);
+            transform.position += transform.forward * (_speed * Time.deltaTime);
         }
     }
     

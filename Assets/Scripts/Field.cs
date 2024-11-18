@@ -3,11 +3,12 @@ using UnityEngine;
 public class Field : MonoBehaviour {
 
     [SerializeField] private Spawner[] spawners;
+    [SerializeField] private GameObject fieldVisual;
     
-    private Renderer _renderer;
+    private Renderer _visualRenderer;
 
     private void Awake() {
-        _renderer = gameObject.GetComponent<Renderer>();
+        _visualRenderer = fieldVisual.GetComponent<Renderer>();
     }
 
     private void Start() {
@@ -17,7 +18,7 @@ public class Field : MonoBehaviour {
     }
     
     public Vector3 GetExtents() {
-        return _renderer.bounds.extents;
+        return _visualRenderer.bounds.extents;
     }
 
     private void ChooseSpawner() {

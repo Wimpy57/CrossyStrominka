@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0d28fe3f5be84698b3f51860c49c6a, type: 3}
   m_Name: SidewalkField
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7123224699016059789, guid: 99e58362f6bbb64d9a7861e9849a8f3b, type: 3}
+  prefab: {fileID: 4826597247895043423, guid: 99e58362f6bbb64d9a7861e9849a8f3b, type: 3}
   roadName: Sidewalk field

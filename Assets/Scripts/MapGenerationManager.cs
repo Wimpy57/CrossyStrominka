@@ -7,6 +7,7 @@ public class MapGenerationManager : MonoBehaviour {
 
     [SerializeField] private RoadLineSO[] roadLineSoList;
     [SerializeField] private Field lastField;
+    [SerializeField] private Transform mapContainer;
 
     private const int MaxSameFieldsSpawnedInRow = 4;
     private const int MaxSpawnedFieldsInDirection = 15;
@@ -69,7 +70,7 @@ public class MapGenerationManager : MonoBehaviour {
             
             Vector3 lastFieldExtents = lastField.GetExtents();
             Field newField = Instantiate(roadLineSo.prefab, 
-                Vector3.zero, Quaternion.identity).GetComponent<Field>();
+                Vector3.zero, Quaternion.identity, mapContainer).GetComponent<Field>();
             Vector3 newFieldExtents = newField.GetExtents();
             
             newField.transform.position = new Vector3(0f, 0f, 

@@ -55,8 +55,4 @@ public class Player : MonoBehaviour {
                 _movementQueue.Add(movementDirection);
             }
     }
-
-    public int GetYPosition() {
-        return (int) transform.position.y;
-    }
 }

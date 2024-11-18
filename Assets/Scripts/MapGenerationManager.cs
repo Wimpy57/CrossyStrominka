@@ -48,7 +48,7 @@ public class MapGenerationManager : MonoBehaviour {
     private void Player_OnMoveBackward(object sender, EventArgs e) {
         _stepsBackCount++;
         if (_stepsBackCount >= MaxStepsBackCount) {
-            //todo it can be reset while player is making fast steps back, so he can do much more than 5
+            //todo: it can be reset while player is making fast steps back, so he can do much more than 5
             Debug.LogWarning("Max steps back count reached");
         }
     }
@@ -61,7 +61,6 @@ public class MapGenerationManager : MonoBehaviour {
         }
     }
 
-    //todo
     private void GenerateFields(int fieldToSpawnIndex, int count=1, bool generateInFront=true) {
         RoadLineSO roadLineSo = roadLineSoList[fieldToSpawnIndex];
         int multiplier = generateInFront ? 1 : -1;

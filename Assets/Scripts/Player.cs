@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
     public static Player Instance { get; private set; }
     public event EventHandler OnMoveForward;
     public event EventHandler OnMoveBackward;
+    //public event EventHandler OnMoveRight;
+    //public event EventHandler OnMoveLeft;
 
     private const float MovementSpeed = 7f;
     private const float MinimumMovementDelay = .15f;
@@ -31,13 +33,20 @@ public class Player : MonoBehaviour {
         if (_progress < MinimumMovementDelay) {
             _progress += Time.deltaTime;
             transform.position = Vector3.Lerp(_startPosition, _targetPosition, _progress * MovementSpeed);
+            
             if (_progress >= MinimumMovementDelay) {
                 if (_targetPosition.z > _startPosition.z) {
                     OnMoveForward?.Invoke(this, EventArgs.Empty);
                 }
-                else {
+                else if (_targetPosition.z < _startPosition.z) {
                     OnMoveBackward?.Invoke(this, EventArgs.Empty);
+                } 
+                /*else if (_targetPosition.x > _startPosition.x) {
+                    OnMoveRight?.Invoke(this, EventArgs.Empty);    
                 }
+                else if (_targetPosition.x < _startPosition.x) {
+                    OnMoveLeft?.Invoke(this, EventArgs.Empty);
+                }*/
             }
         }
         else if (_movementQueue.Count > 0) {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957272930512673093}
-  - component: {fileID: 6689811580347169031}
+  - component: {fileID: 4870571957856374639}
   m_Layer: 0
   m_Name: RailwayField
   m_TagString: Untagged
@@ -31,11 +31,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3534458807374820570}
-  - {fileID: 7704011989183308120}
-  - {fileID: 3559467392313415117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6689811580347169031
+--- !u!114 &4870571957856374639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,105 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2679019800881026192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58c2a2e07a1bdb738d9af9b333b4700, type: 3}
+  m_Script: {fileID: 11500000, guid: 75be3cecac8e50924a7d2c41b23220ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawners:
-  - {fileID: 3418853080956539639}
-  - {fileID: 50888425919747545}
   fieldVisual: {fileID: 8972906216803636605}
---- !u!1 &5528567057678461291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7704011989183308120}
-  - component: {fileID: 3418853080956539639}
-  m_Layer: 0
-  m_Name: Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7704011989183308120
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528567057678461291}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 0.1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1957272930512673093}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3418853080956539639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528567057678461291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da49775cb1c9907483971923b6ab3bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vehicleSo: {fileID: 11400000, guid: e9cc451e7f038806caacd49113e83266, type: 2}
-  field: {fileID: 1957272930512673093}
---- !u!1 &6794615458395794866
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3559467392313415117}
-  - component: {fileID: 50888425919747545}
-  m_Layer: 0
-  m_Name: Spawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3559467392313415117
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6794615458395794866}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 0.1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1957272930512673093}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &50888425919747545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6794615458395794866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da49775cb1c9907483971923b6ab3bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vehicleSo: {fileID: 11400000, guid: e9cc451e7f038806caacd49113e83266, type: 2}
-  field: {fileID: 1957272930512673093}
+  spawnerPrefab: {fileID: 3758404441871326407, guid: a742f2e1c4986d0bdb662aff000f7577, type: 3}
+  spawnerPositions:
+  - {x: 10, y: 0, z: 0}
+  - {x: -10, y: 0, z: 0}
 --- !u!1 &8972906216803636605
 GameObject:
   m_ObjectHideFlags: 0

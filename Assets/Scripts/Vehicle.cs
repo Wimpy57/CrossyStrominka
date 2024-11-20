@@ -8,7 +8,6 @@ public class Vehicle : MonoBehaviour {
     private int _speed;
 
     public void Start() {
-        _speed = Random.Range(vehicleSo.minSpeed, vehicleSo.maxSpeed);
         
         float playerXPosition = Player.Instance.transform.position.x;
         if (transform.position.x < playerXPosition) {
@@ -22,10 +21,11 @@ public class Vehicle : MonoBehaviour {
 
     public void Update() {
         // todo: better checking position of a vehicle
-        if (transform.position.x != transform.position.x * (-1)) {
-            transform.position += transform.forward * (_speed * Time.deltaTime);
-        }
+        
+        transform.position += transform.forward * (_speed * Time.deltaTime);
     }
-    
-    
+
+    public void SetSpeed(int speed) {
+        _speed = speed;
+    }
 }

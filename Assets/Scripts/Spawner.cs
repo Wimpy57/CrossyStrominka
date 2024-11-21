@@ -19,24 +19,6 @@ public class Spawner : MonoBehaviour {
         _vehicleToSpawnSpeed = Random.Range(vehicleSo.minSpeed, vehicleSo.maxSpeed);
     }
 
-    /*private void Start() {
-        Player.Instance.OnMoveRight += Player_OnMoveRight;
-        Player.Instance.OnMoveLeft += Player_OnMoveLeft;
-    }
-
-    private void OnDestroy() {
-        Player.Instance.OnMoveRight -= Player_OnMoveRight;
-        Player.Instance.OnMoveLeft -= Player_OnMoveLeft;
-    }
-
-    private void Player_OnMoveLeft(object sender, EventArgs e) {
-        transform.position += Vector3.left;
-    }
-
-    private void Player_OnMoveRight(object sender, EventArgs e) {
-        transform.position += Vector3.right;
-    }*/
-
     private void Update() {
         if (_spawnDelay <= 0f) {
             SpawnVehicle();

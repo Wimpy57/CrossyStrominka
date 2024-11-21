@@ -48,8 +48,8 @@ MonoBehaviour:
   fieldVisual: {fileID: 8972906216803636605}
   spawnerPrefab: {fileID: 3758404441871326407, guid: a742f2e1c4986d0bdb662aff000f7577, type: 3}
   spawnerPositions:
-  - {x: 10, y: 0, z: 0}
-  - {x: -10, y: 0, z: 0}
+  - {x: 15, y: 0, z: 0}
+  - {x: -15, y: 0, z: 0}
 --- !u!1 &8972906216803636605
 GameObject:
   m_ObjectHideFlags: 0

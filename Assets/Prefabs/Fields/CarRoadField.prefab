@@ -157,5 +157,5 @@ MonoBehaviour:
   fieldVisual: {fileID: 200740341348935174}
   spawnerPrefab: {fileID: 4782819123487913612, guid: 45010c62063c68c6fa3444119a2a8e57, type: 3}
   spawnerPositions:
-  - {x: 10, y: 0, z: 0}
-  - {x: -10, y: 0, z: 0}
+  - {x: 15, y: 0, z: 0}
+  - {x: -15, y: 0, z: 0}

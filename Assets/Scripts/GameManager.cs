@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MapGenerationManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
     [SerializeField] private RoadLineSO[] roadLineSoList;
     [SerializeField] private Field lastField;
@@ -26,12 +26,20 @@ public class MapGenerationManager : MonoBehaviour {
         _fieldIndexesToSpawn = new List<int>();
         GenerateMapOnStart();
         
-        Player.Instance.OnMoveForward += Player_OnMoveForward;
-        Player.Instance.OnMoveBackward += Player_OnMoveBackward;
+        Player.Instance.OnMove += Player_OnMove;
+    }
+
+    private void Player_OnMove(object sender, Player.OnMoveEventArgs e) {
+        if (e.Direction == Vector3.forward) {
+            OnPlayerMoveForward();
+        } 
+        else if (e.Direction == Vector3.back) {
+            OnPlayerMoveBackward();    
+        }
     }
 
 
-    private void Player_OnMoveForward(object sender, EventArgs e) {
+    private void OnPlayerMoveForward() {
         if (_fieldIndexesToSpawn.Count == 0) {
             int fieldToSpawnIndex = GetRandomFieldToSpawnIndex();
             int spawnedFieldsAmount = Random.Range(1, MaxSameFieldsSpawnedInRow + 1);
@@ -46,7 +54,7 @@ public class MapGenerationManager : MonoBehaviour {
         RemoveLastField();
     }
     
-    private void Player_OnMoveBackward(object sender, EventArgs e) {
+    private void OnPlayerMoveBackward() {
         _stepsBackCount++;
         if (_stepsBackCount >= MaxStepsBackCount) {
             //todo: it can be reset while player is making fast steps back, so he can do much more than 5

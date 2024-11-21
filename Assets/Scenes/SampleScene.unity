@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af10b1eb548eff7caddd8ad50f7e088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxXPosition: 8
 --- !u!1 &828672396
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +657,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1657f3309ddf59b4a6ad10c4736d34e, type: 2}
   - {fileID: 11400000, guid: 55a7f9578401904e695da1502039230d, type: 2}
   - {fileID: 11400000, guid: f0e21e290286bbb8f9bf306b21c28cd8, type: 2}
-  lastField: {fileID: 1334584504}
+  lastField: {fileID: 1430025835}
   mapContainer: {fileID: 1332462407}
 --- !u!4 &828672398
 Transform:
@@ -816,7 +817,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4826597247895043423, guid: 99e58362f6bbb64d9a7861e9849a8f3b, type: 3}
   m_PrefabInstance: {fileID: 1334584502}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1334584504 stripped
+--- !u!114 &1430025835 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4485846462513619451, guid: 99e58362f6bbb64d9a7861e9849a8f3b, type: 3}
   m_PrefabInstance: {fileID: 1334584502}

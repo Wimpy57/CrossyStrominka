@@ -6,6 +6,7 @@ public class Vehicle : MonoBehaviour {
     [SerializeField] private VehicleSO vehicleSo;
 
     private int _speed;
+    private float _startXPosition;
 
     public void Start() {
         
@@ -17,12 +18,16 @@ public class Vehicle : MonoBehaviour {
             transform.forward = Vector3.left;
         }
         
+        _startXPosition = transform.position.x;
     }
 
     public void Update() {
-        // todo: better checking position of a vehicle
-        
         transform.position += transform.forward * (_speed * Time.deltaTime);
+
+        if (Mathf.Abs(transform.position.x) > Mathf.Abs(_startXPosition)) {
+            Destroy(gameObject);
+        }
+
     }
 
     public void SetSpeed(int speed) {

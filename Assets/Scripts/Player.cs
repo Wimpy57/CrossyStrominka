@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     
+    [SerializeField] private float maxXPosition;
+    
     public static Player Instance { get; private set; }
-    public event EventHandler OnMoveForward;
-    public event EventHandler OnMoveBackward;
-    //public event EventHandler OnMoveRight;
-    //public event EventHandler OnMoveLeft;
+    public event EventHandler<OnMoveEventArgs> OnMove;
+
+    public class OnMoveEventArgs : EventArgs {
+        
+        public Vector3 Direction;
+        
+    }
 
     private const float MovementSpeed = 7f;
     private const float MinimumMovementDelay = .15f;
@@ -35,18 +40,9 @@ public class Player : MonoBehaviour {
             transform.position = Vector3.Lerp(_startPosition, _targetPosition, _progress * MovementSpeed);
             
             if (_progress >= MinimumMovementDelay) {
-                if (_targetPosition.z > _startPosition.z) {
-                    OnMoveForward?.Invoke(this, EventArgs.Empty);
-                }
-                else if (_targetPosition.z < _startPosition.z) {
-                    OnMoveBackward?.Invoke(this, EventArgs.Empty);
-                } 
-                /*else if (_targetPosition.x > _startPosition.x) {
-                    OnMoveRight?.Invoke(this, EventArgs.Empty);    
-                }
-                else if (_targetPosition.x < _startPosition.x) {
-                    OnMoveLeft?.Invoke(this, EventArgs.Empty);
-                }*/
+                OnMove?.Invoke(this, new OnMoveEventArgs {
+                    Direction = _targetPosition - _startPosition
+                });
             }
         }
         else if (_movementQueue.Count > 0) {
@@ -59,9 +55,22 @@ public class Player : MonoBehaviour {
     }
 
     private void InputManager_OnMovementButtonPressed(object sender, InputManager.OnMovementButtonPressedArgs e) {
-            Vector3 movementDirection = new Vector3(e.Direction.x, 0, e.Direction.y);
-            if (_progress >= MinimumMovementDelay || _movementQueue.Count < MaxMovementQueueLenght) {
-                _movementQueue.Add(movementDirection);
-            }
+        Vector3 movementDirection = new Vector3(e.Direction.x, 0, e.Direction.y);
+        if (_progress >= MinimumMovementDelay || _movementQueue.Count < MaxMovementQueueLenght) {
+            if ((GetPositionAfterQueue() + movementDirection).x >= maxXPosition && movementDirection == Vector3.right) 
+                return;
+            if ((GetPositionAfterQueue() + movementDirection).x <= -maxXPosition && movementDirection == Vector3.left) 
+                return;
+            _movementQueue.Add(movementDirection);
+        }
+    }
+
+    private Vector3 GetPositionAfterQueue() {
+        Vector3 positionAfterQueue = transform.position;
+        foreach (Vector3 movement in _movementQueue) {
+            positionAfterQueue += movement;
+        }
+        
+        return positionAfterQueue;
     }
 }

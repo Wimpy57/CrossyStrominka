@@ -17,17 +17,16 @@ public class Player : MonoBehaviour {
 
     private const float MovementSpeed = 7f;
     private const float MinimumMovementDelay = .15f;
-    private const int MaxMovementQueueLenght = 3;
     
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
     private float _progress;
-    private List<Vector3> _movementQueue;
+    private Vector3 _movementQueue;
     
     private void Awake() {
         Instance = this;
         _progress = MinimumMovementDelay;
-        _movementQueue = new List<Vector3>();
+        _movementQueue = Vector3.zero;
     }
 
     private void Start() {
@@ -45,32 +44,27 @@ public class Player : MonoBehaviour {
                 });
             }
         }
-        else if (_movementQueue.Count > 0) {
+        else if (_movementQueue != Vector3.zero) {
             _startPosition = transform.position;
-            _targetPosition = _startPosition + _movementQueue[0];
+            _targetPosition = _startPosition + _movementQueue;
             _progress = 0f;
-            
-            _movementQueue.RemoveAt(0);
+
+            _movementQueue = Vector3.zero;
         }
     }
 
     private void InputManager_OnMovementButtonPressed(object sender, InputManager.OnMovementButtonPressedArgs e) {
         Vector3 movementDirection = new Vector3(e.Direction.x, 0, e.Direction.y);
-        if (_progress >= MinimumMovementDelay || _movementQueue.Count < MaxMovementQueueLenght) {
+        if (_progress >= MinimumMovementDelay || _movementQueue == Vector3.zero) {
             if ((GetPositionAfterQueue() + movementDirection).x >= maxXPosition && movementDirection == Vector3.right) 
                 return;
             if ((GetPositionAfterQueue() + movementDirection).x <= -maxXPosition && movementDirection == Vector3.left) 
                 return;
-            _movementQueue.Add(movementDirection);
+            _movementQueue = movementDirection;
         }
     }
 
     private Vector3 GetPositionAfterQueue() {
-        Vector3 positionAfterQueue = transform.position;
-        foreach (Vector3 movement in _movementQueue) {
-            positionAfterQueue += movement;
-        }
-        
-        return positionAfterQueue;
+        return transform.position + _movementQueue;
     }
 }

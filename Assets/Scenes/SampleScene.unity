@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af10b1eb548eff7caddd8ad50f7e088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXPosition: 8
+  maxXPosition: 6
 --- !u!1 &828672396
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +659,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0e21e290286bbb8f9bf306b21c28cd8, type: 2}
   lastField: {fileID: 1430025835}
   mapContainer: {fileID: 1332462407}
+  humanPrefab: {fileID: 2785884455941976084, guid: cc9e7a3ca9fc2a8e9bea8afcf42fbb02, type: 3}
 --- !u!4 &828672398
 Transform:
   m_ObjectHideFlags: 0

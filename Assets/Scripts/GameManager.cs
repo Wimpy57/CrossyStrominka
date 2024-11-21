@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,11 +7,13 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private RoadLineSO[] roadLineSoList;
     [SerializeField] private Field lastField;
     [SerializeField] private Transform mapContainer;
+    [SerializeField] private Transform humanPrefab;
 
     private const int MaxSameFieldsSpawnedInRow = 4;
     private const int MaxSpawnedFieldsInDirection = 15;
     private const int MaxStepsBackCount = 5;
     private const float StepsBackCounterResetAfterTime = 5f;
+    private const int MaxPeopleOnField = 10;
 
     private List<Field> _spawnedFields;
     private int _lastSpawnedFieldIndex;
@@ -84,6 +85,10 @@ public class GameManager : MonoBehaviour {
             newField.transform.position = new Vector3(0f, 0f, 
                 lastField.transform.position.z + (newFieldExtents.z + lastFieldExtents.z) * multiplier);
 
+            if (!(newField is FieldWithSpawner)) {
+                SpawnCrowdsOnField(newField.transform);
+            }
+            
             if (generateInFront) {
                 _spawnedFields.Add(newField);
             }
@@ -147,6 +152,25 @@ public class GameManager : MonoBehaviour {
             GenerateFields(_fieldIndexesToSpawn[0]);
             _fieldIndexesToSpawn.RemoveAt(0);
         }
-        
+    }
+
+    private void SpawnCrowdsOnField(Transform fieldTransform) {
+        //todo: bigger spawning chance in the middle of the map
+        int spawnedPeople = 0;
+        for (int i = 10; i >= 0; i--) {
+            if (Random.Range(0, 10) <= i && spawnedPeople <= MaxPeopleOnField) {
+                InstantiateHuman(fieldTransform, i);
+                spawnedPeople++;
+            }
+            if (i > 0 && Random.Range(0, 10) <= i && spawnedPeople <= MaxPeopleOnField) {
+                InstantiateHuman(fieldTransform, -i);
+                spawnedPeople++;
+            }
+        }
+    }
+
+    private void InstantiateHuman(Transform fieldTransform, int xPosition) {
+        Instantiate(humanPrefab, fieldTransform);
+        humanPrefab.SetPositionAndRotation(new Vector3(xPosition, 0f, 0f), Quaternion.identity);
     }
 }

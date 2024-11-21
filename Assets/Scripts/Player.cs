@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -20,8 +19,8 @@ public class Player : MonoBehaviour {
     
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
-    private float _progress;
     private Vector3 _movementQueue;
+    private float _progress;
     
     private void Awake() {
         Instance = this;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Field lastField;
     [SerializeField] private Transform mapContainer;
     [SerializeField] private Transform humanPrefab;
-
+    
     private const int MaxSameFieldsSpawnedInRow = 4;
     private const int MaxSpawnedFieldsInDirection = 15;
     private const int MaxStepsBackCount = 5;

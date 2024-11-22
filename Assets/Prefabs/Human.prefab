@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2785884455941976084}
-  m_Layer: 0
+  - component: {fileID: -9168576167854759052}
+  m_Layer: 6
   m_Name: Human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +33,29 @@ Transform:
   - {fileID: 4763619092379433620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &-9168576167854759052
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883562268500070345}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6975292765161044167
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +68,7 @@ GameObject:
   - component: {fileID: 8066424268674252699}
   - component: {fileID: 7628611970731396702}
   - component: {fileID: 3908568439790625010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HumanVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +162,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.5
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: 0}

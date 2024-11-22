@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private float maxXPosition;
     
     public static Player Instance { get; private set; }
+
+    public event EventHandler OnCollideVehicle;
     public event EventHandler<OnMoveEventArgs> OnMove;
 
     public class OnMoveEventArgs : EventArgs {
@@ -14,6 +16,8 @@ public class Player : MonoBehaviour {
         
     }
 
+    private const string PeopleLayerMask = "People";
+    private const string VehicleLayerMask = "Vehicle";
     private const float MovementSpeed = 7f;
     private const float MinimumMovementDelay = .15f;
     
@@ -52,6 +56,13 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer(VehicleLayerMask)) {
+            InputManager.Instance.OnMovementButtonPressed -= InputManager_OnMovementButtonPressed;
+            OnCollideVehicle?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
     private void InputManager_OnMovementButtonPressed(object sender, InputManager.OnMovementButtonPressedArgs e) {
         Vector3 movementDirection = new Vector3(e.Direction.x, 0, e.Direction.y);
         if (_progress >= MinimumMovementDelay || _movementQueue == Vector3.zero) {
@@ -59,7 +70,11 @@ public class Player : MonoBehaviour {
                 return;
             if ((GetPositionAfterQueue() + movementDirection).x <= -maxXPosition && movementDirection == Vector3.left) 
                 return;
-            _movementQueue = movementDirection;
+            bool canMove = !Physics.Raycast(transform.position,
+                movementDirection, 1f, LayerMask.GetMask(PeopleLayerMask));
+            if (canMove) {
+                _movementQueue = movementDirection;
+            }
         }
     }
 

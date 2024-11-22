@@ -4,11 +4,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
-
+    
     [SerializeField] private RoadLineSO[] roadLineSoList;
     [SerializeField] private Field lastField;
     [SerializeField] private Transform mapContainer;
     [SerializeField] private Transform humanPrefab;
+
+    public static GameManager Instance { get; private set; }
+    public event EventHandler OnGameOver;
     
     private const int MaxSameFieldsSpawnedInRow = 4;
     private const int MaxSpawnedFieldsInDirection = 15;
@@ -22,6 +25,10 @@ public class GameManager : MonoBehaviour {
     private float _stepsBackResetTimer;
     private List<int> _fieldIndexesToSpawn;
 
+    private void Awake() {
+        Instance = this;
+    }
+    
     private void Start() {
         
         _spawnedFields = new List<Field> {lastField};
@@ -60,7 +67,8 @@ public class GameManager : MonoBehaviour {
         _stepsBackCount++;
         if (_stepsBackCount >= MaxStepsBackCount) {
             //todo: it can be reset while player is making fast steps back, so he can do much more than 5
-            Debug.LogWarning("Max steps back count reached");
+            Player.Instance.DisableMovement();
+            OnGameOver?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -156,16 +164,13 @@ public class GameManager : MonoBehaviour {
     }
 
     private void SpawnCrowdsOnField(Transform fieldTransform) {
-        //todo: bigger spawning chance in the middle of the map
         int spawnedPeople = 0;
         for (int i = 10; i >= 0; i--) {
-            if (Random.Range(0, 10) <= i && spawnedPeople <= MaxPeopleOnField) {
-                InstantiateHuman(fieldTransform, i);
-                spawnedPeople++;
-            }
-            if (i > 0 && Random.Range(0, 10) <= i && spawnedPeople <= MaxPeopleOnField) {
-                InstantiateHuman(fieldTransform, -i);
-                spawnedPeople++;
+            if (spawnedPeople < MaxPeopleOnField) {
+                if (SpawnHumanWithChance(fieldTransform, i))
+                    spawnedPeople++;
+                if (SpawnHumanWithChance(fieldTransform, -i))
+                    spawnedPeople++;
             }
         }
     }
@@ -173,5 +178,26 @@ public class GameManager : MonoBehaviour {
     private void InstantiateHuman(Transform fieldTransform, int xPosition) {
         Instantiate(humanPrefab, fieldTransform);
         humanPrefab.SetPositionAndRotation(new Vector3(xPosition, 0f, 0f), Quaternion.identity);
+    }
+
+    private bool SpawnHumanWithChance(Transform fieldTransform, int xPosition) {
+
+        int chanceToSpawn;
+        if (Math.Abs(xPosition) <= 3) {
+            chanceToSpawn = 20;
+        }
+        else if (Mathf.Abs(xPosition) <= 7) {
+            chanceToSpawn = 60;
+        }
+        else {
+            chanceToSpawn = 90;
+        }
+
+        if (Random.Range(0, 100) <= chanceToSpawn) {
+            InstantiateHuman(fieldTransform, xPosition);
+            return true;
+        }
+
+        return false;
     }
 }

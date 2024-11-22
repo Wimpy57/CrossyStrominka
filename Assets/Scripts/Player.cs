@@ -58,7 +58,7 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer(VehicleLayerMask)) {
-            InputManager.Instance.OnMovementButtonPressed -= InputManager_OnMovementButtonPressed;
+            DisableMovement();
             OnCollideVehicle?.Invoke(this, EventArgs.Empty);
         }
     }
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour {
                 return;
             if ((GetPositionAfterQueue() + movementDirection).x <= -maxXPosition && movementDirection == Vector3.left) 
                 return;
+            
             bool canMove = !Physics.Raycast(transform.position,
                 movementDirection, 1f, LayerMask.GetMask(PeopleLayerMask));
             if (canMove) {
@@ -80,5 +81,9 @@ public class Player : MonoBehaviour {
 
     private Vector3 GetPositionAfterQueue() {
         return transform.position + _movementQueue;
+    }
+
+    public void DisableMovement() {
+        InputManager.Instance.OnMovementButtonPressed -= InputManager_OnMovementButtonPressed;
     }
 }

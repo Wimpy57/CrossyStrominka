@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
     private const float StepsBackCounterResetAfterTime = 5f;
     private const int MaxPeopleOnField = 10;
 
+    private int highestScore;
     private List<Field> _spawnedFields;
     private int _lastSpawnedFieldIndex;
     private int _stepsBackCount;
@@ -61,6 +62,11 @@ public class GameManager : MonoBehaviour {
         GenerateFields(_fieldIndexesToSpawn[0]);
         _fieldIndexesToSpawn.RemoveAt(0);
         RemoveLastField();
+
+        if (Player.Instance.transform.position.z > highestScore) {
+            ScoreCounterUI.Instance.RefreshScore();
+            highestScore = (int)Player.Instance.transform.position.z;
+        }
     }
     
     private void OnPlayerMoveBackward() {
